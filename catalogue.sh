@@ -23,6 +23,3 @@ echo -e "\e[32m starting of catalogue service \e[0m"
 systemctl daemon-reload &>>/tmp/roboshop.log
 systemctl enable catalogue &>>/tmp/roboshop.log
 systemctl start catalogue &>>/tmp/roboshop.log
-
-echo -e "\e[32m install mongodb \e[0m"
-dnf install mongodb-org-shell -y &>>/tmp/roboshop.log
