@@ -18,6 +18,7 @@ unzip /tmp/catalogue.zip
 cd /app
 echo -e "\e[33m install npm \e[0m"
 npm install
+
 echo -e "\e[32m starting of catalogue service \e[0m"
 systemctl daemon-reload &>>/tmp/roboshop/log
 systemctl enable catalogue &>>/tmp/roboshop/log
