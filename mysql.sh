@@ -1,7 +1,7 @@
 echo -e "\e[32m Disable old mysql \e[0m"
 yum module disable mysql -y &>>/tmp/roboshop.log
 
-echo -e "e\[33m Copy mysql repo file \e[0m"
+echo -e "\e[33m Copy mysql repo file \e[0m"
 cp /home/centos/roboshop-shell/mysql.repo /etc/yum.repos.d/mysql.repo &>>/tmp/roboshop.log
 
 echo -e "\e[33m Install mysql \e[0m"
