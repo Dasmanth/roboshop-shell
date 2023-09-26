@@ -1,5 +1,5 @@
-color="\e[35m"
-colors="\e[36m"
+color="\e[37m"
+colors="\e[37m"
 nocolor="\e[0m"
 log_file="/tmp/roboshop.log"
 app_path="/app"

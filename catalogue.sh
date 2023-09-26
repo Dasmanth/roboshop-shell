@@ -11,16 +11,16 @@ echo -e "${color} add application user ${nocolor}"
 useradd roboshop &>>${log_file}
 
 echo -e "${colors} Create application directory ${nocolor}"
-rm -rf ${app-path} &>>${log_file}
-mkdir ${app-path}
+rm -rf ${app_path} &>>${log_file}
+mkdir ${app_path}
 
 echo -e "${color} downlaod application content ${nocolor}"
 curl -o /tmp/$component.zip https://roboshop-artifacts.s3.amazonaws.com/$component.zip &>>${log_file}
-cd ${app-path}
+cd ${app_path}
 
 echo -e "${colors} extract application content ${nocolor}"
 unzip /tmp/$component.zip &>>${log_file}
-cd ${app-path}
+cd ${app_path}
 
 echo -e "${colors} install nodejs dependencies ${nocolor}"
 npm install &>>${log_file}
