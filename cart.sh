@@ -1,3 +1,5 @@
+component=cart
+
 echo -e "\e[34m Setup nodejs \e[0m"
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>/tmp/roboshop.log
 
