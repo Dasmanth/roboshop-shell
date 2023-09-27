@@ -1,29 +1,30 @@
+source common.sh
 component=cart
 
-echo -e "\e[34m Setup nodejs \e[0m"
-curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>/tmp/roboshop.log
+echo -e "${color} Setup nodejs ${nocolor}"
+curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>${log_file}
 
-echo -e "\e[32m Installation of nodejs \e[0m"
- yum install nodejs -y &>>/tmp/roboshop.log
+echo -e "${color} Installation of nodejs ${nocolor}"
+ yum install nodejs -y &>>${log_file}
 
- echo -e "\e[33m Add user \e[0m"
- useradd roboshop &>>/tmp/roboshop.log
+ echo -e "${color} Add user ${nocolor}"
+ useradd roboshop &>>${log_file}
 
- echo -e "\e[32m Create application directory \e[0m"
- mkdir /app
+ echo -e "${color} Create application directory ${nocolor}"
+ mkdir ${app_path}
 
- echo -e "\e[33m Download application content \e[0m"
- curl -L -o /tmp/cart.zip https://roboshop-artifacts.s3.amazonaws.com/cart.zip &>>/tmp/roboshop.log
- cd /app
+ echo -e "${color} Download application content ${nocolor}"
+ curl -L -o /tmp/cart.zip https://roboshop-artifacts.s3.amazonaws.com/cart.zip &>>${log_file}
+ cd ${app_path}
 
- echo -e "\e[32m Extract application content \e[0m"
- unzip /tmp/cart.zip &>>/tmp/roboshop.log
- cd /app
+ echo -e "${color} Extract application content ${nocolor}"
+ unzip /tmp/cart.zip &>>${log_file}
+ cd ${app_path}
 
- echo -e "\e[34m Install Cart \e[0m"
- npm install &>>/tmp/roboshop.log
+ echo -e "${color} Install Cart ${nocolor}"
+ npm install &>>${log_file}
 
- echo -e "\e33m Start the Cart \e[0m"
- systemctl daemon-reload &>>/tmp/roboshop.log
- systemctl enable cart &>>/tmp/roboshop.log
- systemctl start cart &>>/tmp/roboshop.log
+ echo -e "\e33m Start the Cart ${nocolor}"
+ systemctl daemon-reload &>>${log_file}
+ systemctl enable cart &>>${log_file}
+ systemctl start cart &>>${log_file}
