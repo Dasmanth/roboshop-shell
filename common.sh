@@ -1,4 +1,4 @@
-color="\e[37m"
+color="\e[32m"
 colors="\e[37m"
 nocolor="\e[0m"
 log_file="/tmp/roboshop.log"
