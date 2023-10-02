@@ -1,5 +1,5 @@
 print_hello() {
-  echo hello Dasmanth
+  echo hello world
 }
 
 print_hello
