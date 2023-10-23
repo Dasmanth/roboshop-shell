@@ -5,6 +5,7 @@ log_file="/tmp/roboshop.log"
 app_path="/app"
 
 app_presetup() {
+
    echo -e "${color} add application user ${nocolor}"
    useradd roboshop &>>${log_file}
 
@@ -71,7 +72,6 @@ maven () {
 
   app_presetup
 
-
   echo -e "${color}Download maven dependencies ${nocolor}"
   mvn clean package &>>$log_file
   mv target/${component}-1.0.jar ${component}.jar &>>$log_file
@@ -84,6 +84,23 @@ maven () {
 
   echo -e "${color}${nocolor}"
   cp /home/centos/roboshop-shell/${component}.service /etc/systemd/system/${component}.service &>>/tmp/robosho.log
+
+   systemd_setup
+
+  }
+
+  python () {
+
+    echo -e "${color} Install python ${nocolor}"
+    yum install python36 gcc python3-devel -y &>>/tmp/roboshop.log
+
+    app_presetup
+
+    echo -e "${color} Install application dependencies ${nocolor}"
+    pip3.6 install -r requirements.txt &>>/tmp/roboshop.log
+
+    echo -e "${color} setpu systemD file ${nocolor}"
+    cp /home/centos/roboshop-shell/payment.service /etc/systemd/system/payment.service &>>/tmp/robosho.log
 
    systemd_setup
   }
