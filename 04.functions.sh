@@ -10,5 +10,4 @@ print_arguments() {
   echo all arguments - $*
   echo no of arguments - $#
 }
-
-prnit_arguments abc 123 xy
+prnit_arguments abc 123 xyz
