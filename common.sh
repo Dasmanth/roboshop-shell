@@ -8,28 +8,59 @@ app_presetup() {
 
    echo -e "${color} add application user ${nocolor}"
    useradd roboshop &>>${log_file}
+   if [ $? -eq 0 ]; then
+     echo SUCESS
+   else
+     echo FAILURE
+   fi
 
    echo -e "${colors} Create application directory ${nocolor}"
    rm -rf ${app_path} &>>${log_file}
    mkdir ${app_path}
+   if [ $? -eq 0 ]; then
+     echo SUCESS
+   else
+     echo FAILURE
+   fi
 
    echo -e "${color} downlaod application content ${nocolor}"
     curl -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}.zip &>>${log_file}
     cd ${app_path}
+   if [ $? -eq 0 ]; then
+     echo SUCESS
+   else
+     echo FAILURE
+   fi
 
    echo -e "${colors} extract application content ${nocolor}"
    unzip /tmp/${component}.zip &>>${log_file}
    cd ${app_path}
-   echo $?
+   if [ $? -eq 0 ]; then
+     echo SUCESS
+   else
+     echo FAILURE
+   fi
 }
 
 systemd_setup() {
+
+  echo -e "${color} setup systemD service ${nocolor}"
+  cp /home/centos/roboshop-shell/$component.service /etc/systemd/system/$component.service &>>$log_file
+   if [ $? -eq 0 ]; then
+     echo SUCESS
+   else
+     echo FAILURE
+   fi
 
   echo -e "${color} start ${component} service ${nocolor}"
    systemctl daemon-reload &>>${log_file}
    systemctl enable ${component} &>>${log_file}
    systemctl start ${component} &>>${log_file}
-   echo $?
+   if [ $? -eq 0 ]; then
+     echo SUCESS
+   else
+     echo FAILURE
+   fi
 }
 
 nodejs() {
@@ -96,7 +127,11 @@ maven () {
     yum install python36 gcc python3-devel -y &>>/tmp/roboshop.log
 
     app_presetup
-    echo $?
+    if [ $? -eq 0 ]; then
+         echo SUCESS
+        else
+          echo FAILURE
+        fi
 
     echo -e "${color} Install application dependencies ${nocolor}"
     pip3.6 install -r requirements.txt &>>/tmp/roboshop.log
@@ -105,5 +140,9 @@ maven () {
     cp /home/centos/roboshop-shell/payment.service /etc/systemd/system/payment.service &>>/tmp/robosho.log
 
    systemd_setup
-   echo $?
+    if [ $? -eq 0 ]; then
+     echo SUCESS
+    else
+      echo FAILURE
+    fi
   }
