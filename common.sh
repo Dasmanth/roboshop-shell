@@ -20,7 +20,7 @@ app_presetup() {
    echo -e "${colors} extract application content ${nocolor}"
    unzip /tmp/${component}.zip &>>${log_file}
    cd ${app_path}
-
+   echo $?
 }
 
 systemd_setup() {
@@ -29,6 +29,7 @@ systemd_setup() {
    systemctl daemon-reload &>>${log_file}
    systemctl enable ${component} &>>${log_file}
    systemctl start ${component} &>>${log_file}
+   echo $?
 }
 
 nodejs() {
@@ -95,6 +96,7 @@ maven () {
     yum install python36 gcc python3-devel -y &>>/tmp/roboshop.log
 
     app_presetup
+    echo $?
 
     echo -e "${color} Install application dependencies ${nocolor}"
     pip3.6 install -r requirements.txt &>>/tmp/roboshop.log
@@ -103,4 +105,5 @@ maven () {
     cp /home/centos/roboshop-shell/payment.service /etc/systemd/system/payment.service &>>/tmp/robosho.log
 
    systemd_setup
+   echo $?
   }
